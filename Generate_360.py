@@ -80,9 +80,9 @@ def create_folders():
     parent = os.path.join(pwd, os.pardir)
     file_root_path = os.path.abspath(parent)
     
-    pathlib.Path(file_root_path + '/360/WIREFRAME').mkdir(parents=True, exist_ok=True) 
-    pathlib.Path(file_root_path + '/360/MATERIAL').mkdir(parents=True, exist_ok=True)
-    pathlib.Path(file_root_path + '/360/RENDERED').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(f'{file_root_path}/360/WIREFRAME').mkdir(parents=True, exist_ok=True) 
+    pathlib.Path(f'{file_root_path}/360/MATERIAL').mkdir(parents=True, exist_ok=True)
+    pathlib.Path(f'{file_root_path}/360/RENDERED').mkdir(parents=True, exist_ok=True)
     
     
             
@@ -111,15 +111,15 @@ def render(shading_type):
     file_number = 0 
     
     # Initialize Path
-    bpy.data.scenes[sce].render.filepath = "//"+"360"+"/"+shading_type + "/" + "360"+"_" + str(file_number) 
+    bpy.data.scenes[sce].render.filepath = f"//360/{shading_type}/360_{str(file_number)}" 
 
     # Getting the current file path: 
     file_root_path = os.path.abspath(os.path.join(bpy.data.filepath, os.pardir))
-    nPath = file_root_path + "/" + "360" + "/" + shading_type
+    nPath = f"{file_root_path}/360/{shading_type}"
 
     
     # lst of all images in current renderd path
-    lst=os.listdir(nPath)
+    lst = os.listdir(nPath)
 
 
     # Inscrease file_number based on last rendered file.
@@ -130,7 +130,7 @@ def render(shading_type):
             
             
     # Changes the path based if new_number ( I think this can be shorter ) 
-    bpy.data.scenes[sce].render.filepath = "//"+"360"+"/"+shading_type + "/" + "360"+"_" + str(file_number) 
+    bpy.data.scenes[sce].render.filepath = f"//360/{shading_type}/360_{str(file_number)}" 
 
     # Getting info about the screen to toggle the xray??????
     for window in bpy.context.window_manager.windows:
